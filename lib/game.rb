@@ -11,7 +11,7 @@ class Game
           board.add_move(spot, name)
           break
         else
-          puts "Sorry?"
+          puts "Sorry? Pick another space."
           board.show_board
         end
       else
@@ -20,10 +20,6 @@ class Game
         board.show_board
       end
     end
-  end
-
-  def check_winners(board)
-    [board.check_win('X'), board.check_win('O')]
   end
 
   def play
@@ -53,7 +49,11 @@ class Game
         puts "#{name} wins!"
         break
       elsif computer_wins
-        puts "Computer wins! Sorry!"
+        if name2.length > 0
+          puts "#{name2} wins!"
+        else
+          puts "Computer wins! Sorry!"
+        end
         break
       elsif board.check_board_full
         puts "It's a tie. Like always."
@@ -63,8 +63,8 @@ class Game
         # long term - replace with - while until unless etc.
         player_move(board, name)
         # stop if player has won
-        player_wins, computer_wins = check_winners(board)
-        
+        player_wins, computer_wins = board.check_winners
+
         if !board.check_board_full && !player_wins
           if players == 1
             system('clear')
@@ -72,12 +72,12 @@ class Game
             # computer makes a move
             board.add_computer_move
             # stop if computer has won
-            player_wins, computer_wins = check_winners(board)
+            player_wins, computer_wins = board.check_winners
           else
             # player 2 logic
             player_move(board, name2)
             # stop if player has won
-            player_wins, computer_wins = check_winners(board)
+            player_wins, computer_wins = board.check_winners
           end
         end
       end
@@ -87,6 +87,5 @@ end
 
 
 # Refactor list
-# - board.check_win method that returns array of both checks (uses destructruing assignment)
 # - Remove all string into their own methods inside of their own class or module
 # - Look into alternative ways of scoring the board for a winner.

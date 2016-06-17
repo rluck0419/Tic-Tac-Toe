@@ -48,6 +48,10 @@ class Board
     @space.all? {|x| x.to_i == 0}
   end
 
+  def check_winners()
+    [check_win('X'), check_win('O')]
+  end
+
   def check_win(character)
     if @space[0] == character
       if @space[1] == character && @space[2] == character
