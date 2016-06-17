@@ -122,7 +122,7 @@ class Game
 
         if !board_full & !player_wins
           system('clear')
-          puts "Computer's move"
+          puts "After computer's move:"
           # computer makes a move
           board.add_computer_move
           # stop if board is full
