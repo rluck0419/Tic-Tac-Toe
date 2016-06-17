@@ -11,18 +11,15 @@ class Board
   end
 
   def show_board
-    puts "1     |2     |3"
-    puts "      |      |"
-    puts "     #{@space[0]}|     #{space[1]}|     #{space[2]}"
-    puts "______|______|______"
-    puts "4     |5     |6"
-    puts "      |      |"
-    puts "     #{@space[3]}|     #{space[4]}|     #{space[5]}"
-    puts "______|______|______"
-    puts "7     |8     |9"
-    puts "      |      |"
-    puts "     #{@space[6]}|     #{space[7]}|     #{space[8]}"
-    puts "      |      |"
+    puts "#{@space[0]}   |#{@space[1]}   |#{@space[2]}"
+    puts "    |    |"
+    puts "____|____|____"
+    puts "#{@space[3]}   |#{@space[4]}   |#{@space[5]}"
+    puts "    |    |"
+    puts "____|____|____"
+    puts "#{@space[6]}   |#{@space[7]}   |#{@space[8]}"
+    puts "    |    |"
+    puts "    |    |"
   end
 
   def add_move(spot)
