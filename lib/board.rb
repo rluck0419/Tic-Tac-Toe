@@ -44,6 +44,10 @@ class Board
     end
   end
 
+  def check_board_full
+    @space.all? {|x| x.to_i == 0}
+  end
+
   def check_win(character)
     if @space[0] == character
       if @space[1] == character && @space[2] == character

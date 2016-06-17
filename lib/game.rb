@@ -41,7 +41,7 @@ class Game
     board.get_player_name(name)
 
     #loop for each round
-    board_full = false
+    # board_full = false
     player_wins = false
     computer_wins = false
     loop do
@@ -51,37 +51,29 @@ class Game
       elsif computer_wins
         puts "Computer wins! Sorry!"
         break
-      elsif board_full
+      elsif board.check_board_full
         puts "It's a tie. Like always."
         break
       else
         # when board isn't full, loop until player provides space (1-9)
         # long term - replace with - while until unless etc.
         player_move(board, name)
-        # sleep(1)
-        # stop if board is full
-        board_full = board.space.all? {|x| x.to_i == 0}
         # stop if player has won
         player_wins = board.check_win('X')
         computer_wins = board.check_win('O')
 
-        if !board_full & !player_wins
+        if !board.check_board_full && !player_wins
           if players == 1
             system('clear')
             puts "After computer's move:"
             # computer makes a move
             board.add_computer_move
-            # stop if board is full
-            board_full = board.space.all? {|x| x.to_i == 0}
             # stop if computer has won
             player_wins = board.check_win('X')
             computer_wins = board.check_win('O')
           else
             # player 2 logic
             player_move(board, name2)
-            # sleep(1)
-            # stop if board is full
-            board_full = board.space.all? {|x| x.to_i == 0}
             # stop if player has won
             player_wins = board.check_win('X')
             computer_wins = board.check_win('O')
@@ -91,3 +83,9 @@ class Game
     end
   end
 end
+
+
+# Refactor list
+# - board.check_win method that returns array of both checks (uses destructruing assignment)
+# - Remove all string into their own methods inside of their own class or module
+# - Look into alternative ways of scoring the board for a winner.
