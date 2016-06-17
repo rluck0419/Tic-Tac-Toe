@@ -2,6 +2,7 @@ class Board
   attr_accessor :space
   def initialize
     @space = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+    @player = ''
     show_board
   end
 
@@ -17,9 +18,18 @@ class Board
     puts "    |    |"
   end
 
-  def add_move(spot)
-    @space[spot-1] = 'X'
-    show_board
+  def get_player_name(name)
+    @player = name
+  end
+
+  def add_move(spot, name)
+    if name == @player
+      @space[spot-1] = 'X'
+      show_board
+    else
+      @space[spot-1] = 'O'
+      show_board
+    end
   end
 
   def add_computer_move
