@@ -22,6 +22,10 @@ class Game
     end
   end
 
+  def check_winners(board)
+    [board.check_win('X'), board.check_win('O')]
+  end
+
   def play
     system('clear')
     puts "Welcome to the game of Tic-Tac-Toe"
@@ -59,9 +63,8 @@ class Game
         # long term - replace with - while until unless etc.
         player_move(board, name)
         # stop if player has won
-        player_wins = board.check_win('X')
-        computer_wins = board.check_win('O')
-
+        player_wins, computer_wins = check_winners(board)
+        
         if !board.check_board_full && !player_wins
           if players == 1
             system('clear')
@@ -69,14 +72,12 @@ class Game
             # computer makes a move
             board.add_computer_move
             # stop if computer has won
-            player_wins = board.check_win('X')
-            computer_wins = board.check_win('O')
+            player_wins, computer_wins = check_winners(board)
           else
             # player 2 logic
             player_move(board, name2)
             # stop if player has won
-            player_wins = board.check_win('X')
-            computer_wins = board.check_win('O')
+            player_wins, computer_wins = check_winners(board)
           end
         end
       end
