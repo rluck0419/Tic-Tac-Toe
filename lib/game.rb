@@ -41,7 +41,6 @@ class Game
     board.get_player_name(name)
 
     #loop for each round
-    # board_full = false
     player_wins = false
     computer_wins = false
     loop do
