@@ -27,14 +27,17 @@ class Game
     puts "Welcome to the game of Tic-Tac-Toe"
     puts "How many players? (1 or 2)"
     players = gets.chomp.to_i
-    if players > 1
+    if players == 2
       puts "Player 1, Please enter your name:"
       name = gets.chomp
       puts "Player 2, Please enter your name:"
       name2 = gets.chomp
-    else
+    elsif players == 1
       puts "Please enter your name:"
       name = gets.chomp
+    else
+      puts "try again."
+      play
     end
     system('clear')
     board = Board.new
@@ -48,7 +51,7 @@ class Game
         puts "#{name} wins!"
         break
       elsif computer_wins
-        if name2.length > 0
+        if name2
           puts "#{name2} wins!"
         else
           puts "Computer wins! Sorry!"
